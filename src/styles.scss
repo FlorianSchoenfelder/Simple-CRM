@@ -1,4 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0px !important;
+}
+body {
+    margin: 0px !important;
+    background-color: lightcoral;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 !important;
+}
+

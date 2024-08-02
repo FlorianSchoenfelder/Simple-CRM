@@ -1,0 +1,47 @@
+* {
+    margin: 0px !important;
+}
+
+.mat-drawer-container {
+    height: 100vh;
+  
+    .sidenav {
+      width: 300px;
+      .logo {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+        padding: 0px 24px;
+        min-height: 56px;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+  
+  mat-toolbar {
+    height: 56px;
+  }
+  
+  ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0;
+    li {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0px 16px;
+      height: 48px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      cursor: pointer;
+      &:hover {
+          background-color: rgba(0, 0, 0, 0.09);
+      }
+      p {
+          margin: 0;
+      }
+    }
+  }
+
+  .router-component {
+    padding: 24px 0px 0px 56px;
+  }

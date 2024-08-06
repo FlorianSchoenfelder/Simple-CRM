@@ -9,3 +9,14 @@
 .width-100 {
     width: 100%;
 }
+
+.overview-container {
+    position: relative;
+    // padding: 16px 0px;
+}
+
+mat-progress-bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+}

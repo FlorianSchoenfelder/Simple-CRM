@@ -13,6 +13,10 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCalendar, MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 import { User } from '../models/user.class';
+import { addDoc, collection, doc, Firestore } from '@angular/fire/firestore';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { CommonModule } from '@angular/common';
+import { UserComponent } from '../user/user.component';
 
 
 @Component({
@@ -28,7 +32,9 @@ import { User } from '../models/user.class';
     MatIconModule,
     MatDatepickerModule,
     MatCalendar,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatProgressBarModule,
+    CommonModule
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './dialog-add-user.component.html',
@@ -36,8 +42,11 @@ import { User } from '../models/user.class';
 })
 export class DialogAddUserComponent {
   readonly dialog = inject(MatDialog);
+  firestore: Firestore = inject(Firestore);
 
   user = new User();
+  birthDate: Date = new Date();
+  loading:boolean = false;
 
   valueFirstName = '';
   valueLastName = '';
@@ -45,8 +54,20 @@ export class DialogAddUserComponent {
   valueZipCode = '';
   valueCity = '';
 
-  saveUser() {
-    console.log('User is', this.user);
-    
+  constructor() {}
+
+  async saveUser() {
+    this.loading = true;
+    this.user.birthDate = this.birthDate.getTime();
+    console.log('User', this.user);
+    await addDoc(this.getNotesRef(), this.user.toJson()).catch((error) => {
+      console.log(error);
+    });
+    this.loading = false;
+    this.dialog.closeAll();
+  }
+
+  getNotesRef() {
+    return collection(this.firestore, 'user');
   }
 }

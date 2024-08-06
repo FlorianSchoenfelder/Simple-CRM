@@ -1,5 +1,40 @@
 .addbtn {
-    position: absolute;
-    bottom: 56px;
-    right: 56px;
+  position: absolute;
+  bottom: 56px;
+  right: 56px;
+}
+
+table {
+  border-collapse: collapse;
+  th {
+    text-align: start;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.4);
+  }
+  tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+    &:first-child {
+        &:hover {
+            cursor: default;     
+            background-color: unset;
+        }
+        
+    }
+    &:last-child {
+      border-bottom: 0;
+    }
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+
+    td,
+    th {
+      height: 48px;
+      &:first-child {
+        padding-left: 16px;
+      }
+    }
+  }
 }

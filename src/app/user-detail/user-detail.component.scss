@@ -1,0 +1,33 @@
+.detail-card-header {
+  min-height: 200px;
+  background-color: #d14a41;
+  color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: 16px 16px 32px 16px;
+  img {
+    height: 80px;
+    width: 80px;
+  }
+  .user-details {
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 16px;
+    gap: 8px;
+  }
+}
+
+.detail-card-content {
+    margin-top: -16px;
+    h2 {
+        padding: 0px 16px;
+        margin: 8px 0px;
+    }
+    .adress-datas {
+        display: flex;
+        flex-direction: column;
+    }
+}

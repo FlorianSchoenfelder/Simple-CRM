@@ -5,6 +5,8 @@ export class User {
     street: string;
     zipCode: number;
     city: string;
+    email: string;
+    id: string;
 
     constructor(obj?:any) { // ? Für Optionale eingabe
         this.firstName = obj ? obj.firstName : ''; // Wenn obj existiert, dann adde firstname, ansonsten ''
@@ -13,6 +15,8 @@ export class User {
         this.street = obj ? obj.street : '';
         this.zipCode = obj ? obj.zipCode : '';
         this.city = obj ? obj.city : '';
+        this.email = obj ? obj.email : '';
+        this.id = obj ? obj.id : '';
     }
 
     public toJson() {
@@ -23,6 +27,8 @@ export class User {
           street: this.street,
           zipCode: this.zipCode,
           city: this.city,
+          email: this.email,
+          id: this.id,
         }
       }
 }

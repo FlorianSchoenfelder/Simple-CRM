@@ -1,15 +1,37 @@
 <mat-card  class="detail-card-header">
+    <button [matMenuTriggerFor]="menu" mat-icon-button class="moreIcon">
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+
+      <mat-menu xPosition="before" #menu="matMenu">
+        <button (click)="openEditPersonalInformationDialog()" mat-menu-item>
+          <mat-icon>edit</mat-icon>
+          <span>Edit</span>
+        </button>
+      </mat-menu>
+
     <img src="./../../assets/img/userLogo.png">
     <div class="user-details">
-        <span>Max Mustermann</span>
-        <span>E-Mail</span>
+        <span>{{ detailedUser.firstName }} {{ detailedUser.lastName }}</span>
+        <span>{{ detailedUser.email }}</span>
     </div>
 </mat-card>
 
 <mat-card class="detail-card-content">
+    <button [matMenuTriggerFor]="menubottom" mat-icon-button class="moreIcon">
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+
+      <mat-menu xPosition="before" #menubottom="matMenu">
+        <button (click)="openEditAdressInformationDialog()" mat-menu-item>
+          <mat-icon>edit</mat-icon>
+          <span>Edit</span>
+        </button>
+      </mat-menu>
+
         <h2>Address</h2>
         <mat-card-content class="adress-datas">
-            <span>Street</span>
-            <span>Zip Code & City</span>
+            <span>{{ detailedUser.street }}</span>
+            <span>{{ detailedUser.zipCode }} {{ detailedUser.city }}</span>
         </mat-card-content>
 </mat-card>

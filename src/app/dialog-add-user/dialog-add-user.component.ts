@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import {MatButtonModule} from '@angular/material/button';
+import { FormsModule, NgForm } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import {
   MatDialog,
   MatDialogActions,
@@ -9,12 +9,12 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
-import {MatCalendar, MatDatepickerModule} from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatCalendar, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 import { User } from '../models/user.class';
 import { addDoc, collection, doc, Firestore } from '@angular/fire/firestore';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CommonModule } from '@angular/common';
 import { UserComponent } from '../user/user.component';
 
@@ -46,7 +46,7 @@ export class DialogAddUserComponent {
 
   user = new User();
   birthDate: Date = new Date();
-  loading:boolean = false;
+  loading: boolean = false;
 
   valueFirstName = '';
   valueLastName = '';
@@ -54,17 +54,29 @@ export class DialogAddUserComponent {
   valueZipCode = '';
   valueCity = '';
 
-  constructor() {}
+  constructor() { }
 
-  async saveUser() {
-    this.loading = true;
-    this.user.birthDate = this.birthDate.getTime();
-    console.log('User', this.user);
-    await addDoc(this.getNotesRef(), this.user.toJson()).catch((error) => {
-      console.log(error);
-    });
-    this.loading = false;
-    this.dialog.closeAll();
+  async saveUser(ngForm: NgForm) {
+    if (ngForm.valid && ngForm.submitted) {
+      console.log(ngForm.value.birthDate );
+      
+      this.loading = true;
+      console.log('submitted');
+      this.user.birthDate = this.birthDate.getTime();
+      console.log('User', this.user);
+      await addDoc(this.getNotesRef(), this.user.toJson()).catch((error) => {
+        console.log(error);
+      });
+      this.loading = false;
+      this.dialog.closeAll();
+    } else {
+      alert('Form not Valid');
+      // this.loading = false;
+      // console.log('not valid');
+
+    }
+
+
   }
 
   getNotesRef() {

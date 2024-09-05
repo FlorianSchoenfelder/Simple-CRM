@@ -20,6 +20,7 @@ export class DashboardComponent {
   error: string | undefined;
   temperatureOfLocation: string | undefined;
   currentCity: string | undefined;
+  currentTime: string | undefined; 
   weatherSymbolValue: string | undefined;
 
   constructor() {
@@ -28,11 +29,11 @@ export class DashboardComponent {
 
   ngOnInit(): void {
     this.getLocation();
-    
+    this.getCurrentTime();
     setTimeout(() => {
       this.getWeatherData();
       this.getCityName();
-    }, 200);
+    }, 500);
         
   }
 
@@ -49,8 +50,16 @@ export class DashboardComponent {
       });
   }
 
+  getCurrentTime() {
+    let date = new Date();
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let allTime = `${hours}:${minutes}:00`;
+    this.currentTime = allTime;    
+  }
+
   async getWeatherData() {
-    let url = this.mainUrl + `/${this.toadysDate}T00:00:00Z/t_2m:C,weather_symbol_1h:idx/${this.latitude},${this.longitude}/json`;
+    let url = this.mainUrl + `/${this.toadysDate}T${this.currentTime}Z/t_2m:C/${this.latitude},${this.longitude}/json`;
     let response = await fetch(url, {
       headers: {
           'Authorization': 'Basic ' + btoa('_schoenfelder_florian' + ':' + 'tM8RE0O2fv')
@@ -74,7 +83,7 @@ export class DashboardComponent {
     // console.log(responseAsJson);
     
     this.currentCity = responseAsJson.place_name;
-  }
+  } 
 
 
 

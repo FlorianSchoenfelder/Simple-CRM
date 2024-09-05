@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, EnvironmentInjector, inject } from '@angular/core';
 import { MatDialog, MatDialogActions, MatDialogClose, MatDialogModule } from '@angular/material/dialog';
 import { User } from '../models/user.class';
 import { FormsModule } from '@angular/forms';
@@ -15,7 +15,9 @@ import { MatProgressBar } from '@angular/material/progress-bar';
 @Component({
   selector: 'app-dialog-edit-adress',
   standalone: true,
-  imports: [CommonModule, MatDialogModule, MatProgressBar, FormsModule, MatFormField, MatLabel, MatIcon, MatInput, MatDialogActions, MatDialogClose, MatIconModule, MatButtonModule],
+  imports: [CommonModule, MatDialogModule, MatProgressBar, FormsModule,
+    MatFormField, MatLabel, MatIcon, MatInput, MatDialogActions,
+    MatDialogClose, MatIconModule, MatButtonModule],
   templateUrl: './dialog-edit-adress.component.html',
   styleUrl: './dialog-edit-adress.component.scss'
 })

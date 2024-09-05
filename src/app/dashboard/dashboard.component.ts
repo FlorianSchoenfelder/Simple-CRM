@@ -20,6 +20,7 @@ export class DashboardComponent {
   error: string | undefined;
   temperatureOfLocation: string | undefined;
   currentCity: string | undefined;
+  weatherSymbolValue: string | undefined;
 
   constructor() {
     
@@ -49,7 +50,7 @@ export class DashboardComponent {
   }
 
   async getWeatherData() {
-    let url = this.mainUrl + `/${this.toadysDate}T00:00:00Z/t_2m:C/${this.latitude},${this.longitude}/json`;
+    let url = this.mainUrl + `/${this.toadysDate}T00:00:00Z/t_2m:C,weather_symbol_1h:idx/${this.latitude},${this.longitude}/json`;
     let response = await fetch(url, {
       headers: {
           'Authorization': 'Basic ' + btoa('_schoenfelder_florian' + ':' + 'tM8RE0O2fv')
@@ -60,6 +61,7 @@ export class DashboardComponent {
   }
     let responseAsJson = await response.json();
     this.temperatureOfLocation = responseAsJson.data[0].coordinates[0].dates[0].value;
+    this.weatherSymbolValue = responseAsJson.data[1].coordinates[0].dates[0].value;
     // console.log(responseAsJson.data[0].coordinates[0].dates[0].value);
     console.log(responseAsJson.data);
   }
